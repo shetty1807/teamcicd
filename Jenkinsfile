@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'npm run build' // Optional: if using a build tool
+        sh 'npm run build'// optional: if using a build tool
       }
-  }
-}
+    }
+  }
