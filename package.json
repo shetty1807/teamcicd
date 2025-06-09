@@ -20,5 +20,5 @@
   "homepage": "https://github.com/shetty1807/teamcicd#readme",
   "dependencies": {
     "express": "^5.1.0"
-  }
+  }
 }
