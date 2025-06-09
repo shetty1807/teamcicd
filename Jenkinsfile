@@ -27,7 +27,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo "Test does here"'
+                sh 'echo "Test goes here"'
             }
         }
 
@@ -35,6 +35,6 @@ pipeline {
             steps {
                 sh 'node server.js & sleep 5'
             }
-        }
-    }
+        }
+    }
 }
