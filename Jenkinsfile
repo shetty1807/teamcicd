@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node 18' // Make sure this matches the name in Jenkins -> Global Tool Configuration
+        nodejs 'nodejs18' // Make sure this matches the name in Jenkins -> Global Tool Configuration
     }
 
     stages {
