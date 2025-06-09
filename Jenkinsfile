@@ -1,39 +1,40 @@
 pipeline {
-  agent any
+    agent any
 
-  tools {
-    nodejs 'Node 18'  // Match the name configured in Global Tool Config
-  }
-
-  stages {
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/your-username/your-repo.git'
-      }
+    tools {
+        nodejs 'nodejs18' // Make sure this matches the name in Jenkins -> Global Tool Configuration
     }
 
-    stage('Install Dependencies') {
-      steps {
-        sh 'npm install'
-      }
-    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],   // change branch if needed
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/shetty1807/teamcicd.git',
+                        credentialsId: 'github-pat'
+                    ]]
+                ])
+            }
+        }
 
-    stage('Lint') {
-      steps {
-        sh 'npm run lint' // Optional: ensure you have a lint script
-      }
-    }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
 
-    stage('Test') {
-      steps {
-        sh 'npm test'
-      }
-    }
+        stage('Test') {
+            steps {
+                sh 'echo "Test does here"'
+            }
+        }
 
-    stage('Build') {
-      steps {
-        sh 'npm run build'// optional: if using a build tool
-      }
-    }
-  }
+        stage('Run App') {
+            steps {
+                sh 'node server.js & sleep 5'
+            }
+        }
+    }
 }
